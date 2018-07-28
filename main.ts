@@ -65,7 +65,7 @@ enum BME280_I2C_IIR_FILTER_COEFFICIENT {
 //% color="#03DEAD" icon="\uf192" block="BME280_I2C"
 namespace BME280_I2C {
 
-    let serialDebugOut: boolean = false;
+    let serialDebugOut: boolean = true;
 
     function DebugWriteLine(str: string): void {
         if (serialDebugOut)
