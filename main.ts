@@ -15,6 +15,7 @@ enum BME280_I2C_SENSOR_MODE {
     e_NORMAL = 0x03
 };
 
+control.eventTimestamp()
 enum BME280_I2C_SAMPLING_MODE {
     //% block="SKIP"
     e_SKIP = 0x00,
@@ -62,10 +63,10 @@ enum BME280_I2C_IIR_FILTER_COEFFICIENT {
     e_16 = 0x04
 };
 
-//% color="#03DEAD" icon="\uf192" block="BME280_I2C"
+//% color="#03DEAD" icon="\uf2c9" block="BME280_I2C"
 namespace BME280_I2C {
 
-    let serialDebugOut: boolean = true;
+    let serialDebugOut: boolean = false;
 
     function DebugWriteLine(str: string): void {
         if (serialDebugOut)
@@ -102,6 +103,7 @@ namespace BME280_I2C {
 
     let deviceFound: boolean = false;
     let currentMode: BME280_I2C_SENSOR_MODE = BME280_I2C_SENSOR_MODE.e_SLEEP;
+    let lastSensorDataTime: number = 0;
 
     let dig_T1: number = 0;
     let dig_T2: number = 0;
@@ -352,6 +354,52 @@ namespace BME280_I2C {
         DebugWriteLine("UpdateCompensatedData - Finish");
     }
 
+    function IsUpdateNeeded(): boolean {
+        if (currentMode != BME280_I2C_SENSOR_MODE.e_NORMAL) {
+            return false;
+        }
+
+        let currentTime = input.runningTime();
+        if (lastSensorDataTime == 0 ||
+            lastSensorDataTime > currentTime)
+            return true;
+
+        let ETA: number = 10;
+        switch (currentSettings.standby_time) {
+            case BME280_I2C_STANDBY_DURATION.e_1_MS:
+                ETA += 1;
+                break;
+            case BME280_I2C_STANDBY_DURATION.e_10_MS:
+                ETA += 10;
+                break;
+            case BME280_I2C_STANDBY_DURATION.e_20_MS:
+                ETA += 20
+                break;
+            case BME280_I2C_STANDBY_DURATION.e_62_5_MS:
+                ETA += 62;
+                break;
+            case BME280_I2C_STANDBY_DURATION.e_125_MS:
+                ETA += 125;
+                break;
+            case BME280_I2C_STANDBY_DURATION.e_250_MS:
+                ETA += 250;
+                break;
+            case BME280_I2C_STANDBY_DURATION.e_500_MS:
+                ETA += 250;
+                break;
+            case BME280_I2C_STANDBY_DURATION.e_1000_MS:
+                ETA += 1000;
+                break;
+            default:
+                break;
+        }
+
+        if (lastSensorDataTime + ETA < currentTime)
+            return true;
+
+        return false;
+    }
+
     function ReadSensorData(): void {
         DebugWriteLine("ReadSensorData");
         let BME280_DATA_ADDR = 0xF7;
@@ -378,6 +426,8 @@ namespace BME280_I2C {
         currentUncompensatedData.humidity = data_msb | data_lsb;
 
         UpdateCompensatedData();
+
+        lastSensorDataTime = input.runningTime();
 
         DebugWriteLine("ReadSensorData - Finished");
     }
@@ -455,6 +505,7 @@ namespace BME280_I2C {
         if (currentSettingsIsChanged) {
             WriteSettings(currentSettings);
             currentSettingsIsChanged = false;
+            lastSensorDataTime = 0;
         }
 
         DebugWriteLine("UpdateSettings - Finished");
@@ -485,7 +536,26 @@ namespace BME280_I2C {
             currentReg = currentReg & 0xFC | mode;
             I2CWriteByte(BME280_PWR_CTRL_ADDR, currentReg);
             currentMode = mode;
+            lastSensorDataTime = 0;
         }
+
+        if (mode == BME280_I2C_SENSOR_MODE.e_FORCED) {
+            let wcnt = 0;
+            // wait for finishing mesurement.
+            basic.pause(10); // at least it will take more than 10ms    
+            for (; ;) {
+                currentReg = I2CReadUint8(BME280_PWR_CTRL_ADDR);
+                if ((currentReg & 0x03) == BME280_I2C_SENSOR_MODE.e_SLEEP)
+                    break;
+                basic.pause(1);
+                wcnt++;
+            }
+            if (wcnt > 0)
+                DebugWriteLine("wcnt = " + wcnt + "\r\n");
+            currentMode = BME280_I2C_SENSOR_MODE.e_SLEEP;
+            ReadSensorData();
+        }
+
         DebugWriteLine("SetSensorMode - Finished");
     }
 
@@ -496,7 +566,8 @@ namespace BME280_I2C {
     //% weight=90
     //% blockId=BME280_I2C_Init
     //% block="BME280 Init I2CAddr = %i2cAddr"
-    export function Init(i2cAddr: BME280_I2C_ADDRESS = BME280_I2C_ADDRESS.e_0x76): void {
+    export function Init(
+        i2cAddr: BME280_I2C_ADDRESS = BME280_I2C_ADDRESS.e_0x76): void {
         DebugWriteLine("Init");
         let BME280_CHIP_ID = 0x60;
         let BME280_CHIP_ID_ADDR = 0xD0;
@@ -557,36 +628,54 @@ namespace BME280_I2C {
     //% weight=87
     //% blockId=BME280_I2C_temperature block="BME280 Temperature"
     export function Temperature(): number {
+        if (IsUpdateNeeded())
+            ReadSensorData();
+
         return (currentCompensatedData.temperature + 50) / 100;
     }
 
     //% weight=86
     //% blockId=BME280_I2C_pressure block="BME280 Pressure"
     export function Pressure(): number {
+        if (IsUpdateNeeded())
+            ReadSensorData();
+
         return (currentCompensatedData.pressure + 50) / 100;
     }
 
     //% weight=85
     //% blockId=BME280_I2C_humidity block="BME280 Humidity"
     export function Humidity(): number {
+        if (IsUpdateNeeded())
+            ReadSensorData();
+
         return (currentCompensatedData.humidity + 512) / 1024;
     }
 
     //% weight=84
     //% blockId=BME280_I2C_temperature100 block="BME280 Temperature100"
     export function Temperature100(): number {
+        if (IsUpdateNeeded())
+            ReadSensorData();
+
         return currentCompensatedData.temperature;
     }
 
     //% weight=83
     //% blockId=BME280_I2C_pressure100 block="BME280 Pressure100"
     export function Pressure100(): number {
+        if (IsUpdateNeeded())
+            ReadSensorData();
+
         return currentCompensatedData.pressure;
     }
 
     //% weight=82
     //% blockId=BME280_I2C_humidity100 block="BME280 Humidity100"
     export function Humidity100(): number {
+        if (IsUpdateNeeded())
+            ReadSensorData();
+
         return (currentCompensatedData.humidity * 100) / 1024;
     }
 
@@ -651,16 +740,18 @@ namespace BME280_I2C {
         retStr += "CurrentCompensatedData\r\n";
         retStr += "T: " + Temperature100() + "\r\n";
         retStr += "P: " + Pressure100() + "\r\n";
-        retStr += "H: " + Humidity() + "\r\n";
+        retStr += "H: " + Humidity100() + "\r\n";
 
         return retStr;
     }
 
-    //% blockId=BME280_I2C_dbgreadsensordata
-    //% block="DbgReadSensorData"
+    //% blockId=BME280_I2C_serialoutsensordata
+    //% block="SerialOutSensorData"
     //% weight=10
-    export function DbgReadSensorData(): void {
-        ReadSensorData();
+    export function SerialOutSensorData(): void {
+        DebugWriteLine("SerialOutSensorData");
+        if (IsUpdateNeeded())
+            ReadSensorData();
         serial.writeLine(DumpCurrentUncompensatedData());
         serial.writeLine(DumpCurrentCompensatedData());
     }
@@ -675,5 +766,4 @@ namespace BME280_I2C {
         serial.writeLine(DumpCurrentUncompensatedData());
         serial.writeLine(DumpCurrentCompensatedData());
     }
-
 }
