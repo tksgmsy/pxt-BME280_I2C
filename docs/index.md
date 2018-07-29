@@ -16,7 +16,7 @@ https://www.bosch-sensortec.com/bst/products/all_products/bme280
 - bleadboard jumpers
 
 ### How to connect BME280 I2C board to your micro:bit
-micro:bit has two terminals to supply power to BME280 I2C board, which called "+3v3" and "GND", and, also have another two terminals to communicate data between your micro:bit and BME280, which called "SCL" and "SDA".  
+micro:bit has two terminals to supply power to BME280 I2C board, which are called "+3v3" and "GND", also it has another two terminals to communicate data between your micro:bit and BME280, which called "SCL" and "SDA".  
 You can visit the following link to refer where the terminals are on your micro:bit.  
 http://microbit.org/guide/hardware/pins/  
   
@@ -24,8 +24,8 @@ On the other hand, your BME280 device will be vary, so I cannot describe here wh
 
 1. "+3v3" -> "VDD" (This is to supply +3V power to your BME280 from micro:bit)
 2. "GND" -> "GND" (This is to supply +3V power to your BME280 from micro:bit)
-3. "SDA" -> "SDI" (This is a I2C data connection.)
-4. "SCL" -> "SCK" (This is a I2C clock connection.)
+3. "SDA" -> "SDI" (This is an I2C data connection.)
+4. "SCL" -> "SCK" (This is an I2C clock connection.)
 
 **Bold** and _Italic_ and `Code` text
 
