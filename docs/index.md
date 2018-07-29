@@ -1,7 +1,7 @@
 
 ## What is BME280
-BME280 is a sensor to measure temperature, pressure, and himidity, which is mainly for monitoring an ordinal envronment.
-micro:bit itself also has a temperature sensor. Howerver, it is for monitoring the temperture of CPU to prevent form overheating, which will report you a hihger temperature than the envrionment when you run some tasks on the CPU. On the other hand, BME280 will report you pretty presice mesurement result, since the each of the unit has its own data to calibrate mesurement result.  
+BME280 is a sensor to measure temperature, pressure, and humidity, which is mainly for monitoring an ordinal environment.
+micro:bit itself also has a temperature sensor. However, it is for monitoring the temperature of CPU to prevent from overheating, which will report you a higher temperature than the environment when you run some tasks on the CPU. On the other hand, BME280 will report you pretty precise measurement result, since the each of the unit has its own data to calibrate measurement result.  
 You can refer the following ling for more information.  
 https://www.bosch-sensortec.com/bst/products/all_products/bme280  
 
@@ -13,11 +13,11 @@ https://www.bosch-sensortec.com/bst/products/all_products/bme280
 ![BME280](image001.jpg)  
 
 ### What you may nice to have
-- a breakout board for micor:bit  
+- a breakout board for micro:bit  
 breakout board exposes all terminals of the connected micro:bit to the pins that can be connected to a breadboard safely.  
 ![BreakoutBoard](image01.jpg)  
 - a breadboard and jumper pins  
-breadboard is usefl to create a test circuit without soldaring.  
+breadboard is useful to create a test circuit without soldering.  
 ![Breadboard](image02.jpg)  
 
 ### How to connect BME280 I2C board to your micro:bit
@@ -25,7 +25,7 @@ micro:bit has two terminals to supply power to BME280 I2C board, which are calle
 You can visit the following link to refer where the terminals are on your micro:bit.  
 http://microbit.org/guide/hardware/pins/  
   
-On the other hand, your BME280 device will be vary, so I cannot describe here what pin should be connected to your what pin of your BME280 device. However most of a device should have the following connections, if you have a difficulty to connect your device, try asking the people around you, don't hesiteate.  
+On the other hand, your BME280 device will be vary, so I cannot describe here what pin should be connected to your what pin of your BME280 device. However most of a device should have the following connections, if you have a difficulty to connect your device, try asking the people around you, don't hesitate.  
 
 1. "+3v3" -> "VDD" (This is to supply +3V power to your BME280 from micro:bit)
 2. "GND" -> "GND" (This is to supply +3V power to your BME280 from micro:bit)
@@ -33,20 +33,22 @@ On the other hand, your BME280 device will be vary, so I cannot describe here wh
 4. "SCL" -> "SCK" (This is an I2C clock connection.)
 
 ### My case
-OK, then, let's in my case.
+OK, then, let's see how my case was.
 
-1. insert micror:bit to the card edge connector of the breakout board.  
+1. Insert micro:bit to the card edge connector of the breakout board.  
 ![proc01](proc01.jpg)  
-2. connect the breakout board to the breadboard.  
+2. Connect the breakout board to the breadboard.  
 ![proc02](proc02.jpg)  
-3. connect the BME280 board to the other hand of the breadboard.  
+3. Connect the BME280 board to the other hand of the breadboard.  
 ![proc03](proc03.jpg)  
-4. connect jumper pins to make the circuit described avobe.  
-In my case, there are two more pins need to connect to "GND" and "+3v3".  
-The one is to select I2C address of BME280 board on I2C bus, which is 0x76. The other is to activate I2C bus.  
-![proc03](proc03.jpg)  
+4. Connect jumper pins to make the circuit described above.  
+In my case, there were two more pins needed to connect to "GND" and "+3v3" respectively.  
+The one was to select I2C address of BME280 board, which was 0x76. The other was to activate I2C bus.  
+![proc04](proc04.jpg)  
 
 
 **Bold** and _Italic_ and `Code` text
 
 [Link](url) and ![Image](src)
+
+
