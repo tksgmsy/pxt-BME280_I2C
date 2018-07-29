@@ -2,7 +2,7 @@
 ## What is BME280
 BME280 is a sensor to measure temperature, pressure, and humidity, which is mainly for monitoring an ordinal environment.
 micro:bit itself also has a temperature sensor. However, it is for monitoring the temperature of CPU to prevent from overheating, which will report you a higher temperature than the environment when you run some tasks on the CPU. On the other hand, BME280 will report you pretty precise measurement result, since the each of the unit has its own data to calibrate measurement result.  
-You can refer the following ling for more information.  
+You can refer the following link for more information about the device.  
 https://www.bosch-sensortec.com/bst/products/all_products/bme280  
 
 ## Set up
@@ -69,4 +69,6 @@ When pressing "B", you'll see hundredfold of the temperature, which is to tell y
 There are other blocks to measure pressure and humidity, additionally to set some functionalities of BME280. I recommend you to check the data sheet of BME280 before using those blocks. You can find it from the following link.  
 https://www.bosch-sensortec.com/bst/products/all_products/bme280
   
-hope you to enjoy your block coding life! bye!  
+Hope you to enjoy your block coding life!  
+By the way, this page and cusom package was written by a father of an elementary school boy in Japan for free research on summer vacation. :)
+
