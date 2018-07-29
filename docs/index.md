@@ -70,5 +70,5 @@ There are other blocks to measure pressure and humidity, additionally to set som
 https://www.bosch-sensortec.com/bst/products/all_products/bme280
   
 Hope you to enjoy your block coding life!  
-By the way, this page and cusom package was written by a father of an elementary school boy in Japan for free research on summer vacation. :)
+By the way, this page and cusom package were written by a father of an elementary school boy in Japan for free research on summer vacation. :)
 
