@@ -25,7 +25,7 @@ micro:bit has two terminals to supply power to BME280 I2C board, which are calle
 You can visit the following link to refer where the terminals are on your micro:bit.  
 http://microbit.org/guide/hardware/pins/  
   
-On the other hand, your BME280 device will be vary, so I cannot describe here what pin should be connected to your what pin of your BME280 device. However most of a device should have the following connections, if you have a difficulty to connect your device, try asking the people around you, don't hesitate.  
+On the other hand, your BME280 device will be vary, so I cannot describe here what pin should be connected to what pin of your BME280 device. However, most of a device should have the following connections, if you have a difficulty to connect your device, try asking the people around you, don't hesitate.  
 
 1. "+3v3" -> "VDD" (This is to supply +3V power to your BME280 from micro:bit)
 2. "GND" -> "GND" (This is to supply +3V power to your BME280 from micro:bit)
