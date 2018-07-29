@@ -1,1 +1,3 @@
 theme: jekyll-theme-slate
+title: BME280 custom package for micro:bit
+description: This is a custom packages for micro:bit to enable BME280 on I2C bus.
