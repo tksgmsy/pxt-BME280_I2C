@@ -51,15 +51,15 @@ Finally we have prepared to use our BME280. Here is the step to get work the sen
 
 1. Open [https://makecode.microbit.org](https://makecode.microbit.org) on your browser.
 2. Click gear icon and select "Add Package..."  
-![code01](Capture.png)  
+![code01](Capture.png =758x)  
 3. Enter the following URL to the text box.  
 https://github.com/tksgmsy/pxt-BME280_I2C  
 Unfortunately, this is not officially approved package, so you'll see that message.  
-![code02](Capture02.PNG)  
+![code02](Capture02.PNG =1659x)  
 4. Once you've successfully imported the package to your project, you'll see that new row on you block coding pane.  
-![code03](Capture03.PNG)  
+![code03](Capture03.PNG =821x)  
 5. Lastly, here is my example code.  
-![code04](Capture04.PNG)  
+![code04](Capture04.PNG =684x)  
 Notice that you must need to select proper I2C bus address of your BME280 in “Init” block, which should be either 0x76 or 0x77.  
 If your BME280 is found on the I2C bus and initialized properly, “DeviceFound” block will return "true", otherwise return "false".
 So, you can check it by looking into the icon after booting your micro:bit.  
