@@ -8,12 +8,17 @@ https://www.bosch-sensortec.com/bst/products/all_products/bme280
 ## Set up
 ### What you must have
 - micro:bit
+![microbit](image000.jpg)
 - BME280 i2c board
+![BME280](image001.jpg)
 
 ### What you may nice to have
 - a breakout board for micor:bit
-- a bleadboard
-- bleadboard jumpers
+breakout board exposes all terminals of the connected micro:bit to the pins that can be connected to a breadboard safely.
+![BreakoutBoard](image01.jpg)
+- a breadboard and jumper pins
+breadboard is usefl to create a test circuit without soldaring.
+![Breadboard](image02.jpg)
 
 ### How to connect BME280 I2C board to your micro:bit
 micro:bit has two terminals to supply power to BME280 I2C board, which are called "+3v3" and "GND", also it has another two terminals to communicate data between your micro:bit and BME280, which called "SCL" and "SDA".  
@@ -26,6 +31,21 @@ On the other hand, your BME280 device will be vary, so I cannot describe here wh
 2. "GND" -> "GND" (This is to supply +3V power to your BME280 from micro:bit)
 3. "SDA" -> "SDI" (This is an I2C data connection.)
 4. "SCL" -> "SCK" (This is an I2C clock connection.)
+
+### My case
+OK, then, let's in my case.
+
+1. insert micror:bit to the card edge connector of the breakout board.
+![proc01](proc01.jpg)
+2. connect the breakout board to the breadboard.
+![proc02](proc02.jpg)
+3. connect the BME280 board to the other hand of the breadboard.
+![proc03](proc03.jpg)
+4. connect jumper pins to make the circuit described avobe.
+In my case, there are two more pins need to connect to "GND" and "+3v3".
+The one is to select I2C address of BME280 board on I2C bus, which is 0x76. The other is to activate I2C bus.
+![proc03](proc03.jpg)
+
 
 **Bold** and _Italic_ and `Code` text
 
