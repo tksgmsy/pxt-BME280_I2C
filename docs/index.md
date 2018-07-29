@@ -46,9 +46,27 @@ In my case, there were two more pins needed to connect to "GND" and "+3v3" respe
 The one was to select I2C address of BME280 board, which was 0x76. The other was to activate I2C bus.  
 ![proc04](proc04.jpg)  
 
+### Let's code!
+Finally we have prepared to use our BME280. Here is the step to get work the sensors.  
 
-**Bold** and _Italic_ and `Code` text
+1. Open [https://makecode.microbit.org](https://makecode.microbit.org) on your browser.
+2. Click gear icon and select "Add Package..."
+![code01](Capture.png)  
+3. Enter the following URL to the text box.  
+Unfortunately, this is not officially approved package, so you'll see that message.
+https://github.com/tksgmsy/pxt-BME280_I2C
+![code02](Capture02.png)  
+4. Once you've successfully imported the package to your project, you'll see that new row on you block coding pane.
+![code03](Capture03.png)  
+5. Lastly, here is my example code.  
+Notice that you must need to select proper I2C bus address of your BME280 in “Init” block, which should be either 0x76 or 0x77.  
+If your BME280 is found on the I2C bus and initialized properly, “DeviceFound” block will return "true", otherwise return "false".
+So, you can check it by look into the icon after booting your micro:bit.  
+When you press "A", you'll see the temperature measured by BME280 in degrees celsius.  
+When you press "B", you'll see hundredfold of the temperature, which is to tell you the temperature with two decimal place.
+![code04](Capture04.png)  
 
-[Link](url) and ![Image](src)
-
+6. Have fun!
+There are other blocks to measure pressure and humidity, additionally to set some functionalities of BME280. I recommend you to look into the date sheet of BME280 before using those blocks. You can find the data sheet from the following link.  
+https://www.bosch-sensortec.com/bst/products/all_products/bme280
 
