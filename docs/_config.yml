@@ -1,3 +1,3 @@
 theme: jekyll-theme-slate
-title: BME280 custom package for micro:bit
-description: This is a custom package for micro:bit to enable an BME280 on I2C bus.
+title: BME280_I2C custom package for micro:bit
+description: BME280 brings you precise measurement data of temperature, pressure and humidity.
