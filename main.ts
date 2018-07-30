@@ -15,7 +15,6 @@ enum BME280_I2C_SENSOR_MODE {
     e_NORMAL = 0x03
 };
 
-control.eventTimestamp()
 enum BME280_I2C_SAMPLING_MODE {
     //% block="SKIP"
     e_SKIP = 0x00,
