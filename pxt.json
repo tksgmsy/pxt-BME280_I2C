@@ -9,7 +9,7 @@
     "files": [
         "README.md",
         "main.ts",
-        "_locales/ja/pxt-BME280_I2C-strings.json",
+        "_locales/ja/BME280_I2C-strings.json"
     ],
     "testFiles": [
         "test.ts"
