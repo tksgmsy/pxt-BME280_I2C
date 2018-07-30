@@ -3,7 +3,7 @@
   "BME280_I2C.SetStandbyDuration|block": "BME280 スタンバイ時間: %sb",
   "BME280_I2C.SetIIRFilterCoefficient|block": "BME280 IIRフィルタ係数: %coef",
   "BME280_I2C.UpdateSettings|block": "BME280 設定値の更新: %coef",
-  "BME280_I2C.SetSensorMode|block": "BME280 センサーモードの設定 %mode"  
+  "BME280_I2C.SetSensorMode|block": "BME280 センサーモードの設定 %mode",
   "BME280_I2C.Init|block": "BME280 初期化 I2Cアドレス:%i2cAddr",
   "BME280_I2C.DeviceFound|block": "BME280 デバイスが見つかったか?",
   "BME280_I2C.Temperature|block": "BME280 気温(℃)",
