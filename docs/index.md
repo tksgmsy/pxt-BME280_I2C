@@ -5,7 +5,7 @@ micro:bit itself also has a temperature sensor. However, it is for monitoring th
 You can refer the following link for more information about the device.  
 https://www.bosch-sensortec.com/bst/products/all_products/bme280  
 
-## Set up
+## Setting up
 ### What you must have
 - micro:bit  
 ![microbit](image000.jpg)  
@@ -20,7 +20,7 @@ breakout board exposes all terminals of the connected micro:bit to the pins that
 breadboard is useful to create a test circuit without soldering.  
 ![Breadboard](image02.jpg)  
 
-### How to connect BME280 I2C board to your micro:bit
+### How to connect a BME280 I2C board to your micro:bit
 micro:bit has two terminals to supply power to BME280 I2C board, which are called "+3v3" and "GND", also it has another two terminals to communicate data between your micro:bit and BME280, which called "SCL" and "SDA".  
 You can visit the following link to refer where the terminals are on your micro:bit.  
 http://microbit.org/guide/hardware/pins/  
@@ -46,7 +46,7 @@ In my case, there were two more pins needed to connect to "GND" and "+3v3" respe
 The one was to select I2C address of BME280 board, which was 0x76. The other was to activate I2C bus.  
 ![proc04](proc04.jpg)  
 
-### Let's code!
+### Let's coding!
 Finally we have prepared to use our BME280. Here is the step to get work the sensors.  
 
 1. Open [https://makecode.microbit.org](https://makecode.microbit.org) on your browser.
@@ -71,4 +71,3 @@ https://www.bosch-sensortec.com/bst/products/all_products/bme280
   
 Hope you to enjoy your block coding life!  
 By the way, this page and cusom package were written by a father of an elementary school boy in Japan for free research on summer vacation. :)
-
