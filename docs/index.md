@@ -46,7 +46,7 @@ In my case, there were two more pins needed to connect to "GND" and "+3v3" respe
 The one was to select I2C address of BME280 board, which was 0x76. The other was to activate I2C bus.  
 ![proc04](proc04.jpg)  
 
-### Let's coding!
+### Let's code!
 Finally we have prepared to use our BME280. Here is the step to get work the sensors.  
 
 1. Open [https://makecode.microbit.org](https://makecode.microbit.org) on your browser.
