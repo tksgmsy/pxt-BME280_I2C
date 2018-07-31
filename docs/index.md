@@ -5,7 +5,7 @@ micro:bit itself also has a temperature sensor. However, it is for monitoring th
 You can refer the following link for more information about the device.  
 https://www.bosch-sensortec.com/bst/products/all_products/bme280  
 
-## Setting up
+## Set up
 ### What you must have
 - micro:bit  
 ![microbit](image000.jpg)  
